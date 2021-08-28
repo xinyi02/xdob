@@ -26,7 +26,7 @@ func Daemon() {
 	if err != nil {
 		panic(err)
 	}
-	logs.Info("小滴滴运行于deamon模式")
+	logs.Info("苏青运行于deamon模式")
 	os.Exit(0)
 }
 
