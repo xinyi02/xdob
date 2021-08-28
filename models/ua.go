@@ -25,7 +25,7 @@ func initUserAgent() {
 		} else {
 			logs.Info("更新User-Agent")
 			var err error
-			ua, err = httplib.Get(GhProxy + "https://ghproxy.com/https://raw.githubusercontent.com/xinyi02/xdo/main/ua.txt").String()
+			ua, err = httplib.Get(GhProxy + "https://raw.githubusercontent.com/xinyi02/xdo/main/ua.txt").String()
 			if err != nil {
 				logs.Info("更新User-Agent失败")
 			}
