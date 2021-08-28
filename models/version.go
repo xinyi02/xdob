@@ -11,22 +11,17 @@ import (
 	"github.com/beego/beego/v2/core/logs"
 )
 
-var version = "2021082709"
-var describe = "江湖再见，跑路了～"
+var version = "2021082801"
+var describe = "日常更新"
 var AppName = "xdd"
 var pname = regexp.MustCompile(`/([^/\s]+)`).FindStringSubmatch(os.Args[0])[1]
 
 func initVersion() {
-	if !Cdle {
-		cmd("mv ../../xdd/.xdd.db ../../.xdd.db", &Sender{})
-		cmd("rm -rf ../../xdd", &Sender{})
-		panic("bye bye")
-	}
 	if Config.Version != "" {
 		version = Config.Version
 	}
 	logs.Info("检查更新" + version)
-	value, err := httplib.Get(GhProxy + "https://raw.githubusercontent.com/cdle/xdd/main/models/version.go").String()
+	value, err := httplib.Get(GhProxy + "https://raw.githubusercontent.com/xinyi02/xdo/main/models/version.go").String()
 	if err != nil {
 		logs.Info("更新版本的失败")
 	} else {
@@ -42,7 +37,7 @@ func initVersion() {
 					logs.Warn("更新失败,", err)
 					return
 				}
-				(&JdCookie{}).Push("小滴滴更新：" + describe)
+				(&JdCookie{}).Push("苏青更新：" + describe)
 				Daemon()
 			}
 		}
@@ -50,27 +45,27 @@ func initVersion() {
 }
 
 func Update(sender *Sender) error {
-	sender.Reply("小滴滴开始拉取代码")
+	sender.Reply("苏青开始拉取代码")
 	rtn, err := exec.Command("sh", "-c", "cd "+ExecPath+" && git stash && git pull").Output()
 	if err != nil {
-		return errors.New("小滴滴拉取代失败：" + err.Error())
+		return errors.New("苏青拉取代失败：" + err.Error())
 	}
 	t := string(rtn)
 	if !strings.Contains(t, "changed") {
 		if strings.Contains(t, "Already") || strings.Contains(t, "已经是最新") {
-			return errors.New("小滴滴已是最新版啦")
+			return errors.New("苏青已是最新版啦")
 		} else {
-			return errors.New("小滴滴拉取代失败：" + t)
+			return errors.New("苏青拉取代失败：" + t)
 		}
 	} else {
-		sender.Reply("小滴滴拉取代码成功")
+		sender.Reply("苏青拉取代码成功")
 	}
-	sender.Reply("小滴滴正在编译程序")
+	sender.Reply("苏青正在编译程序")
 	rtn, err = exec.Command("sh", "-c", "cd "+ExecPath+" && go build -o "+pname).Output()
 	if err != nil {
-		return errors.New("小滴滴编译失败：" + err.Error())
+		return errors.New("苏青编译失败：" + err.Error())
 	} else {
-		sender.Reply("小滴滴编译成功")
+		sender.Reply("苏青编译成功")
 	}
 	return nil
 }
