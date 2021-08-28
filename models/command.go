@@ -172,7 +172,7 @@ var codeSignals = []CodeSignal{
 			// 	return nil
 			// }
 			// return rsp
-			return "小滴滴和京东没有任何关系，请使用ninja。"
+			return "人生苦短"
 		},
 	},
 	{
@@ -182,7 +182,7 @@ var codeSignals = []CodeSignal{
 			if err := Update(sender); err != nil {
 				return err.Error()
 			}
-			sender.Reply("小滴滴重启程序")
+			sender.Reply("苏青重启程序")
 			Daemon()
 			return nil
 		},
@@ -191,7 +191,7 @@ var codeSignals = []CodeSignal{
 		Command: []string{"重启", "reload", "restart", "reboot"},
 		Admin:   true,
 		Handle: func(sender *Sender) interface{} {
-			sender.Reply("小滴滴重启程序")
+			sender.Reply("苏青重启程序")
 			Daemon()
 			return nil
 		},
