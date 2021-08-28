@@ -27,7 +27,7 @@ func initVersion() {
 		if match := regexp.MustCompile(`var version = "(\d{10})"`).FindStringSubmatch(value); len(match) != 0 {
 			if match[1] > version {
 				logs.Warn("版本过低，下载更新")
-				rsp, err := httplib.Get(GhProxy + "https://github.com/cdle/jd_study/releases/download/main/" + name).Response()
+				rsp, err := httplib.Get(GhProxy + "https://github.com/xinyi02/jd_study/releases/download/main/" + name).Response()
 				if err != nil {
 					logs.Warn("无法下载更新")
 					return
