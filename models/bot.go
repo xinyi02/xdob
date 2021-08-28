@@ -128,7 +128,7 @@ var handleMessage = func(msgs ...interface{}) interface{} {
 		if !isAdmin(msgs...) { //
 			return "你没有权限操作"
 		}
-		sendMessagee("小滴滴开始拉取代码", msgs...)
+		sendMessagee("苏青开始拉取代码", msgs...)
 		rtn, err := exec.Command("sh", "-c", "cd "+ExecPath+" && git pull").Output()
 		if err != nil {
 			return err.Error()
@@ -136,28 +136,28 @@ var handleMessage = func(msgs ...interface{}) interface{} {
 		t := string(rtn)
 		if !strings.Contains(t, "changed") {
 			if strings.Contains(t, "Already") || strings.Contains(t, "已经是最新") {
-				sendMessagee("小滴滴已是最新版啦", msgs...)
+				sendMessagee("苏青已是最新版啦", msgs...)
 			} else {
-				sendMessagee("小滴滴拉取代失败：", msgs...)
+				sendMessagee("苏青拉取代失败：", msgs...)
 			}
 			return nil
 		} else {
-			sendMessagee("小滴滴拉取代码成功", msgs...)
+			sendMessagee("苏青拉取代码成功", msgs...)
 		}
-		sendMessagee("小滴滴正在编译程序", msgs...)
+		sendMessagee("苏青正在编译程序", msgs...)
 		rtn, err = exec.Command("sh", "-c", "cd "+ExecPath+" && go build -o "+pname).Output()
 		if err != nil {
-			sendMessagee("小滴滴编译失败：", msgs...)
+			sendMessagee("苏青编译失败：", msgs...)
 			return nil
 		} else {
-			sendAdminMessagee("小滴滴编译成功", msgs...)
+			sendAdminMessagee("苏青编译成功", msgs...)
 		}
 		fallthrough
 	case "重启":
 		if !isAdmin(msgs...) {
 			return "你没有权限操作"
 		}
-		sendAdminMessagee("小滴滴重启程序", msgs...)
+		sendAdminMessagee("苏青重启程序", msgs...)
 		Daemon()
 		return nil
 	case "查询", "query":
