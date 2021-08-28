@@ -1,4 +1,4 @@
-module github.com/cdle/xdd
+module github.com/xinyi02/xdo
 
 go 1.16
 
